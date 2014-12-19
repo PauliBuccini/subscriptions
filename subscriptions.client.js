@@ -124,7 +124,9 @@ Ground.subscribe = function(/* arguments, callbacks */) {
 var weight = {
   age: 1,
   lastUsed: 1,
-  count: 2      // Most used should have a bigger chance
+  count: 2,      // Most used should have a bigger chance
+  // Size of data - perhaps we could measure the time it takes from subscribe to
+  // ready - eg. have the option to weight by loadTime?
 };
 
 var sortByWeight = function(a, b) {
@@ -172,7 +174,10 @@ Meteor.startup(function() {
 
       // Trigger the load...
       var loader = Meteor.setInterval(function() {
-        if (loadSubscriptions.length) {
+
+        // XXX: We could also have a limit - eg. only the top 10 subscriptions
+        // will be resumed? Or let subscriptions die after a period of time
+        if (loadSubscriptions.length /* have a limit of subs to resume? */) {
           // We shift to get the first in line...
           var sub = loadSubscriptions.shift();
           // check if subscription is already loaded by user
@@ -196,6 +201,7 @@ Meteor.startup(function() {
                 createdAt: sub.createdAt,
                 updatedAt: sub.updatedAt,
                 count: sub.count,
+                // Lets resume the subscription
                 handle: Meteor.subscribe.apply(Meteor.subscribe, args);
               };
 

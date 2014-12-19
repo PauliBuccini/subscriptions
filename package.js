@@ -11,7 +11,7 @@ Package.on_use(function (api) {
 
   if (api.versionsFrom) {
 
-    api.versionsFrom('METEOR@0.9.4');
+    api.versionsFrom('0.9.4');
 
     api.use('meteor-platform', ['client', 'server']);
 
