@@ -11,7 +11,7 @@ Package.on_use(function (api) {
 
   if (api.versionsFrom) {
 
-    api.versionsFrom('0.9.4');
+    api.versionsFrom('METEOR@1.2.1');
 
     api.use('meteor-platform', ['client', 'server']);
 
@@ -19,28 +19,13 @@ Package.on_use(function (api) {
       'meteor',
       'underscore',
       'ejson',
-      'ground:util@0.0.2',
-      'ground:localstorage@0.0.2',
+      'ground:util@0.3.14-rc.3',
+      'raix:localforage-localstorage@1.2.4-rc.1',
       ], ['client', 'server']);
 
     api.use(['tracker'], 'client');
 
-  } else {
-
-    api.use('standard-app-packages', ['client', 'server']);
-
-    api.use([
-      'meteor',
-      'underscore',
-      'ejson',
-      'ground-util',
-      'ground-localstorage',
-      ], ['client', 'server']);
-
-    api.use(['deps'], 'client');
-
   }
-
 
   api.add_files('subscriptions.client.js', 'client');
 
