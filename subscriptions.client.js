@@ -202,7 +202,7 @@ Meteor.startup(function() {
                 updatedAt: sub.updatedAt,
                 count: sub.count,
                 // Lets resume the subscription
-                handle: Meteor.subscribe.apply(Meteor.subscribe, args);
+                handle: Meteor.subscribe.apply(Meteor.subscribe, args),
               };
 
             } catch(err) {
